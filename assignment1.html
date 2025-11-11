@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portfolio</title>
+  
+  <style>
+    /* ----- Base styles ----- */
+    :root {
+      --bg: #0f172a;        /* slate-900 */
+      --card: #111827;      /* gray-900 */
+      --text: #e5e7eb;      /* gray-200 */
+      --muted: #94a3b8;     /* slate-400 */
+      --accent: #22d3ee;    /* cyan-400 */
+      --accent-2: #a78bfa;  /* violet-400 */
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg), #0b1025 60%);
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ----- Layout helpers ----- */
+    .container { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+    .section { padding: 64px 0; }
+    .card { background: var(--card); border: 1px solid #1f2937; border-radius: 16px; padding: 20px; }
+    .pill { border: 1px solid #324155; padding: 6px 10px; border-radius: 999px; font-size: 14px; color: var(--muted); }
+
+    /* ----- Header / Nav ----- */
+    header {
+      position: sticky; top: 0; backdrop-filter: blur(8px); background: rgb(15 23 42 / 0.7);
+      border-bottom: 1px solid #1f2937; z-index: 10;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .4px; }
+    .brand-logo { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+    .links { display: flex; gap: 18px; }
+    .links a { color: var(--text); font-size: 15px; }
+    .menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 28px; }
+
+    /* ----- Hero ----- */
+    .hero { display: grid; gap: 24px; align-items: center; grid-template-columns: 1.1fr .9fr; }
+    .hero h1 { font-size: clamp(28px, 4.2vw, 46px); line-height: 1.1; margin: 0; }
+    .hero p { color: var(--muted); font-size: 18px; }
+    .cta { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 12px; border: 1px solid #334155; background: #0b1229; color: var(--text); }
+    .pfp { inline-size: 220px; aspect-ratio: 1/1; border-radius: 18px; border: 1px solid #334155; background: url('image.png') center/cover no-repeat; margin-left: auto; }
+
+    /* ----- Grids ----- */
+    .grid { display: grid; gap: 16px; }
+    .grid.projects { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .grid.skills { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+
+    /* ----- Footer ----- */
+    footer { border-top: 1px solid #1f2937; color: var(--muted); padding: 28px 0; }
+
+    /* ----- Responsive ----- */
+    @media (max-width: 800px) {
+      .links { display: none; }
+      .menu-btn { display: block; }
+      .hero { grid-template-columns: 1fr; }
+      .pfp { margin: 0; }
+    }
+
+    /* Simple mobile menu shown via JS */
+    .mobile-menu { display: none; padding: 10px 0 16px; }
+    .mobile-menu a { display: block; padding: 10px 8px; color: var(--text); border: 1px solid #1f2937; border-radius: 10px; margin-bottom: 8px; text-align: center; }
+    .mobile-menu.open { display: block; }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <span>Nithiesh Kumar</span>
+      </div>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+    </div>
+    <div class="container mobile-menu" id="mMenu">
+      <a href="#about" onclick="toggleMenu(false)">About</a>
+      <a href="#projects" onclick="toggleMenu(false)">Projects</a>
+      <a href="#skills" onclick="toggleMenu(false)">Skills</a>
+      <a href="#contact" onclick="toggleMenu(false)">Contact</a>
+    </div>
+  </header>
+
+  
+  <section class="section">
+    <div class="container hero">
+      <div>
+        <span class="pill">Beginner Developer</span>
+        <h1>Hi, I'm <span style="color: var(--accent)">Nithiesh Kumar</span>.</h1>
+        <p>
+          I am currently a 2nd-year CSE student with a strong interest in problem-solving and learning new technologies.<br> I enjoy improving my skills, exploring new concepts, and working on projects that help me grow as a developer
+        </p>
+        <div style="display:flex; gap: 12px; margin-top: 12px;">
+          <a class="cta" href="#projects">See my projects →</a>
+          <a class="cta" href="mailto:you@example.com">Email me</a>
+        </div>
+      </div>
+      <div class="pfp" title=image.png></div>
+    </div>
+  </section>
+
+  
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About</h2>
+      <div class="card" style="margin-top:12px">
+        <p>
+          I'm based in India and currently focused on the web fundamentals.
+          I like solving small problems, building UI components, and learning best practices.
+        </p>
+        <p>
+          Outside coding: baseket ball, gamming, and cooking experiments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="grid projects" style="margin-top:12px">
+        
+       
+        
+        
+        
+        <article class="card">
+          <h3>Calorie Tracker (mock)</h3>
+          <p class="muted">Simple table + JS form to track meals.</p>
+          <ul>
+            <li>LocalStorage</li>
+            <li> JS</li>
+          </ul>
+          <a href="#" aria-label="Open project 3">Live demo</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="grid skills" style="margin-top:12px">
+        <div class="card" style="text-align:center">working on skills</div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact</h2>
+      <div class="card" style="margin-top:12px; display:grid; gap: 12px;">
+        <p>Want to collaborate or say hi? Reach out!</p>
+        <div style="display:flex; gap: 12px; flex-wrap: wrap;">
+          <a class="cta" href="mailto:you@example.com">you@example.com</a>
+          <a class="cta" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+          <a class="cta" href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <span>© <span id="year"></span> Your Name</span>
+      <a href="#" class="pill" title="Back to top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle the mobile menu on small screens
+    function toggleMenu(force) {
+      const m = document.getElementById('mMenu');
+      const isOpen = typeof force === 'boolean' ? force : !m.classList.contains('open');
+      if (isOpen) m.classList.add('open'); else m.classList.remove('open');
+    }
+    // Set current year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+>
